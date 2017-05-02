@@ -7,4 +7,11 @@
       return DOT(obj.__proto__, prop);
     }
   };
+
+  DOTCALL = function(obj, prop, args){
+    var fn = DOT(obj, prop);
+    if (fn) {
+      return fn.apply(obj, args);
+    }
+  };
 </script>
