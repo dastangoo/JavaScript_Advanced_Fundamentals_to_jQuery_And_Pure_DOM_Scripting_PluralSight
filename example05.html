@@ -1,0 +1,14 @@
+<script>
+var dog = {
+  barkCount: 0,
+  bark: function(barks){
+    this.barkCount += barks;
+  }
+},
+cat = {
+  barkCount: 0
+};
+
+dog.bark.call(cat, 1);
+
+</script>
