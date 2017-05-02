@@ -1,0 +1,16 @@
+<script>
+
+  Animal = function(name){ this.name = name; }
+  Animal.prototype.eats = function(){
+    return this.name + " is eating."
+  };
+
+  Chordate = function(name){ this.name = naem; }
+  Chordate.prototype = new Animal();
+  Chordate.prototype.has_spine = true;
+
+  Mammal = function(name){this.name = name;}
+  Mammal.prototype = new Chordate();
+  m = new Mammal('dog');
+
+</script>
