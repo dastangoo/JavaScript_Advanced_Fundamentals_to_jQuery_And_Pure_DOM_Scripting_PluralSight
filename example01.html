@@ -43,7 +43,13 @@
       }
       return collection;
     },
-    makeArray: function(arr){},
+    makeArray: function(arr){
+      var array = [];
+      $.each(arr, function(i, value){
+        array.push(value);
+      });
+      return array;
+    },
     proxy: function(fn, context){}
   })
 
