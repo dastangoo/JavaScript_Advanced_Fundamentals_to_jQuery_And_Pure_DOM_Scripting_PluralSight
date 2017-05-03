@@ -1,0 +1,15 @@
+<script>
+  $ = function(selector) {};
+
+  $.extend = function(target, object){
+      for(var prop in object){
+        if (object.hasOwnProperty(prop)) {
+          target[prop] = object[prop];
+        }
+      }
+      return target;
+  }
+</script>
+
+(var prop in object){
+}
