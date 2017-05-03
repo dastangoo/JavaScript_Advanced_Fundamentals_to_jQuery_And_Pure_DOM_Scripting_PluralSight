@@ -1,0 +1,13 @@
+<head>
+<script>
+  var iframe = document.createElement('iframe');
+  document.body.appendChild(iframe);
+  var _Array = window.frames[window.frames.length-1].Array;
+  var arr = new _Array(1, 2, 3);
+
+  document.write(typeof arr);
+  document.write(arr instanceof Array);
+</script>
+</head>
+<body>
+</body>
