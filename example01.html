@@ -10,10 +10,15 @@
       return target;
   }
   var isArrayLike = function(obj){
-    var o = {"foo": "hi"};
-    var pop = "foo";
-    hasProp = prop in o;
-
+    if (typeof obj.length === "number") {
+      if(obj.length === 0){
+        return true;
+      }
+      else if (obj.length > 0) {
+        return (obj.length - 1) in obj;
+      }
+    }
+    return false;
   };
 
   $.extend($, {
