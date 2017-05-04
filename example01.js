@@ -95,5 +95,10 @@ $.extend($.prototype, {
       //return this[0] && this[0].value;
       return this[0].value;
     }
+  },
+  text: function(newText){
+    if(arguments.length){
+      //setter
+    }
   }
 });
