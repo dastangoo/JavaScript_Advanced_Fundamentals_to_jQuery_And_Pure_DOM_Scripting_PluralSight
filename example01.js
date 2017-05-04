@@ -1,3 +1,4 @@
+
 $ = function(selector) {
   var elements = document.querySelectorAll(selector);
 
@@ -74,6 +75,17 @@ $.extend($.prototype, {
     }
     else {
       return this[0].innerHTML;
+    }
+  },
+  val: function(newVal){
+    if(arguments.length){
+      $.each(this, function(i, el){
+        el.value = newVal;
+      });
+      return this;
+    }
+    else{
+      return this[0].value;
     }
   }
 });
