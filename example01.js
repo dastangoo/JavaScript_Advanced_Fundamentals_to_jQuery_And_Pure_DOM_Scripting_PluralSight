@@ -1,5 +1,8 @@
 
 $ = function(selector) {
+  if (!(this instanceof $)) {
+    return new $(selector);
+  }
   var elements = document.querySelectorAll(selector);
 
   // Array.prototype.push.call(this, elements);
@@ -8,6 +11,9 @@ $ = function(selector) {
   }
   this.length = elments.length;
 };
+
+tabs.$ = $;
+
 
 $.extend = function(target, object){
     for(var prop in object){
@@ -74,6 +80,7 @@ $.extend($.prototype, {
       return this;
     }
     else {
+      //return this[0] && this[0].innerHTML;
       return this[0].innerHTML;
     }
   },
@@ -85,6 +92,7 @@ $.extend($.prototype, {
       return this;
     }
     else{
+      //return this[0] && this[0].value;
       return this[0].value;
     }
   }
