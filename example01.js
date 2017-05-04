@@ -28,7 +28,7 @@ var isArrayLike = function(obj){
   return false;
 };
 
-$.extend($, {
+$.extend($.prototype, {
   isArray: function(obj){
     return Object.prototype.toString.call(obj) === "[object Array]";
   },
@@ -61,5 +61,16 @@ $.extend($, {
     return function(){
       retrun fn.apply(context, arguments)
     };
+  }
+});
+
+$.extend($.prototype, {
+  html: function(newHtml){
+    if(arguments.length){
+      return $.each(this, function(i, el){});
+    }
+    else {
+
+    }
   }
 });
