@@ -52,7 +52,7 @@
     },
     proxy: function(fn, context){
       return function(){
-
+        retrun fn.apply(context, arguments)
       };
     }
   });
