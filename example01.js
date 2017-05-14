@@ -14,6 +14,14 @@ $ = function(selector) {
 
 tabs.$ = $;
 
+var getText = function(el){
+  var txt = "";
+  $.each(el.childNodes, function(i, childNode){
+
+  })
+
+  return txt;
+};
 
 $.extend = function(target, object){
     for(var prop in object){
@@ -97,8 +105,16 @@ $.extend($.prototype, {
     }
   },
   text: function(newText){
+    this.html("");
     if(arguments.length){
-      //setter
+      return $.each(this, function(i, el){
+        // el.innerHTML = "";
+        var text = document.createTextNode(newText);
+        el.appendChild(text);
+      });
+    }
+    else {
+      return this[0] && getText(this[0]);
     }
   }
 });
