@@ -17,7 +17,11 @@ tabs.$ = $;
 var getText = function(el){
   var txt = "";
   $.each(el.childNodes, function(i, childNode){
-
+    if (childNode.nodeType === NODE.TEXT_NODE) {
+      txt += childNode.nodeValue;
+    } else if(childNode.nodeType === NODE.COMMENT_NODE){
+      txt += getText(childNode);
+    }
   })
 
   return txt;
