@@ -3,8 +3,15 @@ $ = function(selector) {
   if (!(this instanceof $)) {
     return new $(selector);
   }
-  var elements = document.querySelectorAll(selector);
 
+  debugger;
+  var elements;
+  if (typeof selector === 'string') {
+    elements = document.querySelectorAll(selector);
+  }
+  else {
+    elements = selector;
+  }
   // Array.prototype.push.call(this, elements);
   for (var i = 0; i < elements.length; i++) {
     this[i] = elements[i];
@@ -47,7 +54,7 @@ var isArrayLike = function(obj){
   return false;
 };
 
-$.extend($.prototype, {
+// $.extend($.prototype, {
   isArray: function(obj){
     return Object.prototype.toString.call(obj) === "[object Array]";
   },
@@ -120,5 +127,15 @@ $.extend($.prototype, {
     else {
       return this[0] && getText(this[0]);
     }
+  },
+  find: function(selector){
+      var elements = [];
+
+      $.each(this, function(i, el){
+        var els = el.querySelectorAll(selector);
+        [].push.apply(elements, els);
+      });
+x      return $(elements);
   }
+
 });
