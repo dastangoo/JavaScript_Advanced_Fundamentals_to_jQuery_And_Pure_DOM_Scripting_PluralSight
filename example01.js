@@ -19,8 +19,7 @@ $ = function(selector) {
   this.length = elments.length;
 };
 
-tabs.$ = $;
-
+$.tabs = $;
 var getText = function(el){
   var txt = "";
   $.each(el.childNodes, function(i, childNode){
@@ -85,7 +84,7 @@ $.extend($.prototype, {
   },
   proxy: function(fn, context){
     return function(){
-      retrun fn.apply(context, arguments)
+      return fn.apply(context, arguments)
     };
   }
 });
@@ -140,22 +139,32 @@ $.extend($.prototype, {
   next: function(){
     var elements = [];
 
-    while(current && current.nodeType !== 1){
-      current = current.nextSibling;
-    }
-    if (current) {
-      elements.push(current);
-    }
-    // $.each(this, function(i, el){
-    //   var current = el.nextSibling;
-    //   if(current.nodeType === 1){
-    //     elements.push(el);
-    //   }
-    //   else if(current.nodeType ===3){
-    //
-    //   }
+    $.each(this, function(i, el){
+      var current = el.nextSibling;
+      while(current && current.nodeType !== 1){
+        current = current.nextSibling;
+      }
+      if (current) {
+        elements.push(current);
+      }
+    });
+    return $(elements);
+  },
+  prev: function(){
+    var elements = [];
+
+    $.each(this, function(i, el){
+      var current = el.previousSibling;
+      while(current && current.nodeType !== 1){
+        current = current.previousSibling;
+      }
+      if (current) {
+        elements.push(current);
+      }
     });
     return $(elements);
   }
+
+
 
 });
