@@ -204,5 +204,12 @@ $.extend($.prototype, {
     var leftPadding = this.css("padding-left"),
         rightPadding = this.css("padding-right");
     return clientWidth = parseInt(leftPadding) - parseInt(rightPadding);
+  },
+  offset: function(){
+    var offset = this[0].getBoundingClientRect();
+    return {
+      top: offset.top + window.pageYOffset,
+      left: offset.left + window.pageXOffset
+    };
   }
 });
