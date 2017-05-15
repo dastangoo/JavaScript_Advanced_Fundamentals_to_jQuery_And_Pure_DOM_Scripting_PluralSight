@@ -136,6 +136,26 @@ $.extend($.prototype, {
         [].push.apply(elements, els);
       });
       return $(elements);
+  },
+  next: function(){
+    var elements = [];
+
+    while(current && current.nodeType !== 1){
+      current = current.nextSibling;
+    }
+    if (current) {
+      elements.push(current);
+    }
+    // $.each(this, function(i, el){
+    //   var current = el.nextSibling;
+    //   if(current.nodeType === 1){
+    //     elements.push(el);
+    //   }
+    //   else if(current.nodeType ===3){
+    //
+    //   }
+    });
+    return $(elements);
   }
 
 });
