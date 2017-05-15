@@ -191,12 +191,18 @@ $.extend($.prototype, {
     if (arguments.length > 1) {
       return $.each(this, function(i, el){
         el.style[cssPropName] = value;
+      }
       );
     }
     else {
       return this[0] &&
             document.defaultView.getComputedStyle(this[0]).getPropertyValue(cssPropName);
     }
+  },
+  width: function(){
+    var clientWidth = this[0].clientWidth;
+    var leftPadding = this.css("padding-left"),
+        rightPadding = this.css("padding-right");
+    return clientWidth = parseInt(leftPadding) - parseInt(rightPadding);
   }
-
 });
