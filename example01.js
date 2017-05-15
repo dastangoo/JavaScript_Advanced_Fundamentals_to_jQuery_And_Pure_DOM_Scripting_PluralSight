@@ -16,10 +16,25 @@ $ = function(selector) {
   for (var i = 0; i < elements.length; i++) {
     this[i] = elements[i];
   }
-  this.length = elments.length;
+  this.length = elements.length;
 };
 
-$.tabs = $;
+
+var makeTraverser = function(cb){
+  return function(){
+    var elements = [], args = arguments;
+    $.each(this, function(i, el){
+      var ret = cb.apply(el, args);
+      if (ret && isArrayLike(ret)) {
+        [].push.apply(elements, ret);
+      }
+      else if (ret) {
+        elements.push(ret);
+      }
+    });
+    return $(elements);
+  }
+};
 var getText = function(el){
   var txt = "";
   $.each(el.childNodes, function(i, childNode){
@@ -136,35 +151,31 @@ $.extend($.prototype, {
       });
       return $(elements);
   },
-  next: function(){
-    var elements = [];
 
-    $.each(this, function(i, el){
-      var current = el.nextSibling;
-      while(current && current.nodeType !== 1){
-        current = current.nextSibling;
-      }
-      if (current) {
-        elements.push(current);
-      }
-    });
-    return $(elements);
-  },
-  prev: function(){
-    var elements = [];
+  next: makeTraverser(function(){
+    var current = el.nextSibling;
+    while(current && current.nodeType !== 1){
+      current = current.nextSibling;
+    }
+    if (current) {
+      elements.push(current);
+    }
+  }),
 
-    $.each(this, function(i, el){
-      var current = el.previousSibling;
-      while(current && current.nodeType !== 1){
-        current = current.previousSibling;
-      }
-      if (current) {
-        elements.push(current);
-      }
-    });
-    return $(elements);
-  }
-
-
+  prev: makeTraverser(function(){
+    var current = el.previousSibling;
+    while(current && current.nodeType !== 1){
+      current = current.previousSibling;
+    }
+    if (current) {
+      elements.push(current);
+    }
+  }),
+  parent: makeTraverser(function(){
+    return this.parentNode;
+  }),
+  children: makeTraverser(function(){
+    return this.children;
+  })
 
 });
