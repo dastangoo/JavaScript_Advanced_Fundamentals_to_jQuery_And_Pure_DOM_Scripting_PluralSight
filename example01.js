@@ -179,12 +179,22 @@ $.extend($.prototype, {
   }),
   attr: function(attrName, value){
     if (arguments.length > 1) {
-      $.each(this, function(i, el){
+      return $.each(this, function(i, el){
         el.setAttribute(attrName, value);
       });
     }
     else {
       return this[0] && this[0].getAttribute(attrName);
+    }
+  },
+  css: function(cssPropName, value){
+    if (arguments.length > 1) {
+      return $.each(this, function(i, el){
+        el.style[cssPropName] = value;
+    }
+    else {
+      return this[0] &&
+            document.defaultView.getComputedStyle(this[0]).getPropertyValue(cssPropName);
     }
   }
 
