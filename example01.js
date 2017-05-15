@@ -211,5 +211,13 @@ $.extend($.prototype, {
       top: offset.top + window.pageYOffset,
       left: offset.left + window.pageXOffset
     };
+  },
+  hide: function(){
+    this.css("display", "none");
+  },
+  show: function(){
+    this.css("display", ""):
+
+      break;
   }
 });
