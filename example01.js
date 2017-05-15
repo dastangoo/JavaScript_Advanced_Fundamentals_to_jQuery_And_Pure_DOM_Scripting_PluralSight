@@ -176,6 +176,16 @@ $.extend($.prototype, {
   }),
   children: makeTraverser(function(){
     return this.children;
-  })
+  }),
+  attr: function(attrName, value){
+    if (arguments.length > 1) {
+      $.each(this, function(i, el){
+        el.setAttribute(attrName, value);
+      });
+    }
+    else {
+      return this[0] && this[0].getAttribute(attrName);
+    }
+  }
 
 });
