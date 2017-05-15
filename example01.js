@@ -191,6 +191,7 @@ $.extend($.prototype, {
     if (arguments.length > 1) {
       return $.each(this, function(i, el){
         el.style[cssPropName] = value;
+      );
     }
     else {
       return this[0] &&
