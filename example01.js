@@ -232,6 +232,28 @@ $.extend($.prototype, {
       el.removeEventListener(eventName, handler, false);
     });
 
+  },
+  has: function(selector){
+    var elements = [];
+
+    $.each(this, function(i, el) {
+      if (el.matches(selector)) {
+        elements.push(el);
+      }
+    });
+    return $(elements);
+  },
+  on: function(eventType, selector, handler){
+    return this.bind(eventType, function(ev){
+
+      var cur = ev.target;
+      do {
+        if ($([cur]).has(selector).length) {
+          handler.call(cur, ev);
+        }
+        cur = cur.parentNode;
+      } while (cur && cur !== ev.currentTarget);
+    });
   }
 
 });
