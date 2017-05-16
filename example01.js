@@ -219,5 +219,19 @@ $.extend($.prototype, {
     this.css("display", ""):
 
       break;
+  },
+
+  //Events
+  bind: function(eventName, handler){
+    return $.each(this, function(i, el){
+      el.addEventListener(eventName, handler, false);
+    });
+  },
+  unbind: function(eventName, handler){
+    return $.each(this, function(i, el){
+      el.removeEventListener(eventName, handler, false);
+    });
+
   }
+
 });
