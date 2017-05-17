@@ -254,6 +254,13 @@ $.extend($.prototype, {
         cur = cur.parentNode;
       } while (cur && cur !== ev.currentTarget);
     });
-  }
+  },
+  off: function(eventType, selector, handler) {},
+  data: function(propName, data) {},
 
+  //Extra
+  addClass: function(className) {},
+  removeClass: function(className) {},
+  append: function(element) {},
 });
+fn: $.prototype;
